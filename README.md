@@ -1,2 +1,2 @@
 # minitalk
-Aprender como funcional las señales en c
+Aprender como funcional las señales en unix
