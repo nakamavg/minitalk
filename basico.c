@@ -6,7 +6,7 @@
 /*   By: dgomez-m <aecm.davidgomez@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 19:51:33 by dgomez-m          #+#    #+#             */
-/*   Updated: 2024/01/03 21:06:37 by dgomez-m         ###   ########.fr       */
+/*   Updated: 2024/01/04 21:47:02 by dgomez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,22 @@ Programa basico para ver como funcional las señales de unix en C con procesos p
 #include <sched.h>
 
 void handler_signal(int sig){
-	printf("Comunicandome con el mundo despues de recibir el kill %d \n", sig);
+	
+	printf("Comunicandome con el mundo despues de recibir el kill \n");
+		
 }
 
 int main()
 {
+
+	struct sigaction sgnl;
+	sgnl.sa_handler = handler_signal;
+	
+	sigaction(SIGUSR1, &sgnl, NULL); 
+	
+	
+	
 	pid_t pid;
-	signal(SIGUSR1, handler_signal);//recibe
 	printf("Estoy en el main\n");
 	pid = getpid();
 	
