@@ -6,7 +6,7 @@
 /*   By: dgomez-m <aecm.davidgomez@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 22:05:48 by dgomez-m          #+#    #+#             */
-/*   Updated: 2024/01/04 22:10:12 by dgomez-m         ###   ########.fr       */
+/*   Updated: 2024/01/05 03:36:24 by dgomez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINITALK_H
 
 # include <signal.h>
-# include "../libft/libft.h"
+# include "lib/libft/libft.h"
 # define ARGUMENTS_ERROR "Error : arguments\n"
 # define PID_ERROR "Error : Invalid PID\n"
 # define ARGUMENTS_MAX_ERROR "Error : too many arguments\n"
