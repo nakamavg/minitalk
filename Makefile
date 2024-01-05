@@ -6,65 +6,52 @@
 #    By: dgomez-m <aecm.davidgomez@gmail.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 15:38:53 by ael-khni          #+#    #+#              #
-#    Updated: 2024/01/05 03:52:52 by dgomez-m         ###   ########.fr        #
+#    Updated: 2024/01/05 04:36:37 by dgomez-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Binary Name:
-NAME	=
-CLIENT	=	client
-SERVER	=	server
+CC				=	gcc
+CFLAGS			=	-Wall -Wextra -Werror
+includes		=	./includes
+CFLAGS			+=	-I. -I./includes
+RM				=	rm -rf
+SERVER			= server
+CLIENT			= client
 
-#libft Variables:
-LIBFT	=	lib/libft/libft.a
-LIBFT_DIR	=	./lib/libft
+# Libft
+LIBFT_DIR		=	lib/libft
+LIBFT			=	$(LIBFT_DIR)/libft.a
+CFLAGS			+=	-I $(LIBFT_DIR)
 
-#minitalk variables
-SRC_C	=	client.c
-SRC_S	=	server.c
-OBJ_S	=	server.o
-OBJ_C	=	client.o
-INC		=	minitalk.h
+# Sources and objects
 
-#Compiling Variables:
-CC			=	gcc
-CFLAG		=	-Wall -Wextra -Werror
-RM			=	rm -rf
+OBJ_S		=	server.o
+OBJ_C		=	client.o
+%.o:	%.c
+	$(CC)	$(CFLAGS)	-c	$<	-o	$@
 
-#Colors:
-GREEN		=	\e[38;5;118m
-YELLOW		=	\e[38;5;226m
-RESET		=	\e[0m
-_SUCCESS	=	[$(GREEN)SUCCESS$(RESET)]
-_INFO		=	[$(YELLOW)INFO$(RESET)]
 
-all: $(LIBFTPRINTF) $(CLIENT) $(SERVER)
+all:  $(LIBFT)
+	$(MAKE) $(SERVER)
+	$(MAKE) $(CLIENT)
+	
+$(SERVER):	$(OBJ_S)	$(LIBFT)
+	$(CC)	$(CFLAGS)	-o	$(SERVER)	$(OBJ_S)	$(LIBFT)
 
-$(SERVER): $(OBJ_S) $(INC)
-	@ $(CC) $(CFLAGS) $(LIBFT) -o $@ $(OBJ_S)
-	@printf "$(_SUCCESS) server ready.\n"
-
-$(CLIENT): $(OBJ_C) $(INC)
-	@ $(CC) $(CFLAGS) $(LIBFT) -o $@ $(OBJ_C)
-	@printf "$(_SUCCESS) client ready.\n"
-
-%.o: %.c
-	@ $(CC) $(CFLAGS) -c $< -o $@
+$(CLIENT):	$(OBJ_C)	$(LIBFT)
+	$(CC)	$(CFLAGS)	-o	$(CLIENT)	$(OBJ_C)	$(LIBFT)
 
 $(LIBFT):
-	@ $(MAKE) -C $(LIBFT_DIR)
+	 make -C $(LIBFT_DIR)
 
 clean:
-	@ $(MAKE) clean -C $(LIBFT_DIR)
-	@ $(RM) $(OBJ_C) $(OBJ_S)
-	@printf "$(_INFO) object files removed.\n"
+	$(RM) $(OBJ)
+	make clean -C $(LIBFT_DIR)
 
 fclean: clean
-	@ $(MAKE) fclean -C $(LIBFT_DIR)
-	@ $(RM) $(CLIENT) $(SERVER)
-	@printf "$(_INFO) client removed.\n"
-	@printf "$(_INFO) server removed.\n"
+	$(RM) $(NAME)
+	make fclean -C $(LIBFT_DIR)
 
-re: fclean all
+re: all clean fclean re
 
 .PHONY: all clean fclean re

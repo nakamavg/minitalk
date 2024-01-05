@@ -6,7 +6,7 @@
 /*   By: dgomez-m <aecm.davidgomez@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:50:10 by dgomez-m          #+#    #+#             */
-/*   Updated: 2024/01/05 02:56:59 by dgomez-m         ###   ########.fr       */
+/*   Updated: 2024/01/05 05:22:55 by dgomez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,41 +44,40 @@ static void  send_signal(const int pid, int sig)
 		ft_putstr_fd(FAILED_MESSAGE, 2);
 		exit(EXIT_FAILURE);
 	}
-	usleep(300); //sirve para que el servidor tenga tiempo de recibir la señal
+	usleep(300); 
 }
 static void convert_byte(int pid, char *message)
 {
-	int i;
-	int j;
 	int bit;
-	// hola en binario es 01101000 01101111 01101100 01100001
-	i = 0;
+	bit = 7;
+	int index = 0;
 	if(!message)
 		exit(EXIT_FAILURE) ;
-	while(message[i])
+	while(message[index])
 	{
-		j = 0;
-		while (j < 8)
+			
+		while(bit >= 0)
 		{
-			bit = (message[i] >> (7 - j)) & 1;
-			printf("bit %d\n", bit);
-			if (bit == 1)
+			if (((message[index] >> bit) & 1) == 1) 
 				send_signal(pid, SIGUSR1);
 			else
 				send_signal(pid, SIGUSR2);
-			++j;
-			usleep(100);
+			bit--;
+			usleep(300);
 		}
-		++i;
+		bit = 7;
+		index++;
 	}
+	
 }
 
 int main(int argc , char **argv)
 {
 	int pid;
-	int i;
 	
 	check_arguments(argc);
 	pid = get_pid(argv[1]);
 	convert_byte(pid, argv[2]);
+	convert_byte(pid, "\n");
+	return (0);
 }
