@@ -6,7 +6,7 @@
 #    By: dgomez-m <aecm.davidgomez@gmail.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 15:38:53 by ael-khni          #+#    #+#              #
-#    Updated: 2024/01/05 03:32:02 by dgomez-m         ###   ########.fr        #
+#    Updated: 2024/01/05 03:52:52 by dgomez-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=
 CLIENT	=	client
 SERVER	=	server
 
-#ft_printf Variables:
+#libft Variables:
 LIBFT	=	lib/libft/libft.a
 LIBFT_DIR	=	./lib/libft
 
