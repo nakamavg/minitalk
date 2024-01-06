@@ -232,7 +232,7 @@ nakama@DESKTOP-FIDJ5EI:~/minitalk$ ./a.out
 		2. realiza una puerta logica and con 1 
 			1. 0  y 1 es 0
 			2. 1 y  1 es 1 
-	4. y asi sucesivamente para el resto de los bits de los bytes de el string
+	4. en cada iteracion bit es -- y empujara menos bits a la derecha
 
 - Ya tendriamos la logica para escribir bits solo queda cambiar esto en vez de imprimir 
 	por terminal enviar señales a nuestro server.
