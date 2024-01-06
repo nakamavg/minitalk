@@ -6,7 +6,7 @@
 /*   By: dgomez-m <aecm.davidgomez@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:50:10 by dgomez-m          #+#    #+#             */
-/*   Updated: 2024/01/05 05:22:55 by dgomez-m         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:33:58 by dgomez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ static void convert_byte(int pid, char *message)
 			
 		while(bit >= 0)
 		{
-			if (((message[index] >> bit) & 1) == 1) 
-				send_signal(pid, SIGUSR1);
+			if (((message[index] >> bit) & 1) == 1)  
+			 
+				send_signal(pid, SIGUSR1); 
 			else
 				send_signal(pid, SIGUSR2);
 			bit--;

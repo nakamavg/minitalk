@@ -6,7 +6,7 @@
 /*   By: dgomez-m <aecm.davidgomez@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 22:10:33 by dgomez-m          #+#    #+#             */
-/*   Updated: 2024/01/05 05:02:58 by dgomez-m         ###   ########.fr       */
+/*   Updated: 2024/01/06 01:44:43 by dgomez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	handler(int sig)
 	static unsigned char ch = '\0';
 	ch <<= 1;
 	if (sig == SIGUSR1)
-		ch |= 1; // el operador |= es un OR bit a bit que significa que si alguno de los dos bits es 1 el resultado es 1
+		ch |= 1; 
 	bite++;
 	if (bite == 8)
 	{

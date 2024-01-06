@@ -1,19 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-
-void sumar(int a, int b)
+#include "lib/libft/libft.h"
+//aprender a recorrer un string con un puntero y un while y leer el valor de cada caracter pode mandarlo como signal
+//por que mandamos un signal por cada bit y no todo el byte de una vez
+void convert_byte(char *message)
 {
-	int c = a + b;
-	printf("La suma es %d , con un pid de %d: \n", c,getpid());
+	int bit;
+	bit = 7;
+	int index = 0;
+	if(!message)
+		exit(EXIT_FAILURE) ;
+	while(message[index])
+	{
+			
+		while(bit >= 0)
+		{
+			if (((message[index] >> bit) & 1) == 1) 
+				printf("1");
+			else
+				printf("0");
+			bit--;
+		}
+		bit = 7;
+		index++;
+	}
+	printf("\n");
 }
 
 
-int main()
+
+int main(void)
 {
-	int fd[2];
-	printf("Estoy en el main\n");
-	printf("El pid es %d \n", getpid());
-	sumar(2,3);
+	//esto es una a en binario
+	char  *message = "Hola";
+	convert_byte(message);
+	return (0);
 }
