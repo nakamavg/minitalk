@@ -177,7 +177,8 @@ Desplazamiento a la derecha: 2
 00000000000000000000000000000010
 ```
 - Cuando decimos que`<< 1` `>> 1` corre el bit o desplaza la izquierda estamos diciendo que:
-	- El primer bit que sea 1 lo convierte a 0 y el que este a la izquierda lo convierte a 1
+	- empuja afuera por  la izq de nuestros binarios 1 bit y nos añade uno por la derecha
+	- empuja afuera por la derecha y nos añade uno por la derecha
 
 - De que me sirve esto ? para recorrer cada bit de cada Byte de Cada array
 
